@@ -30,9 +30,9 @@ def video_feed():
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
-	#if request.method == 'GET':
-	f = request.files['file']
-	f.save(secure_filename(f.filename))
-	#return 'file uploaded successfully'
-	return render_template('index.html',filename=f)
+	if request.method == 'POST':
+		f = request.files['file']
+		f.save(secure_filename(f.filename))
+		return 'file uploaded successfully'
+	#return render_template('index.html',filename=f)
 	
