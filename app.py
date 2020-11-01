@@ -3,15 +3,18 @@ from camera import VideoCamera
 import cv2
 import requests
 from werkzeug.utils import secure_filename
+#import os
 
 app=Flask(__name__)
+#APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+'''
 app.secret_key="secret key"
-#app.config['UPLOAD_FOLDER']=r"C:\Users\Kritika\Desktop\face_flask\static"
+
 app.config['UPLOAD_FOLDER']='static/'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 app.config['ALLOWED_EXTENSIONS']=["jpg","png","mov","jpeg"]
 app.config['DEBUG']=True
-
+'''
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -27,6 +30,23 @@ def gen(camera):
 def video_feed():
 	video_stream = VideoCamera()
 	return Response(gen(video_stream),mimetype='multipart/x-mixed-replace; boundary=frame')
+'''
+@app.route("/upload", methods=['POST'])
+def upload():
+    target = os.path.join(APP_ROOT, 'images/')
+    print(target)
+
+    if not os.path.isdir(target):
+        os.mkdir(target)
+
+    for file in request.files.getlist("file"):
+        print(file)
+        filename = file.filename
+        destination = "/".join([target, filename])
+        print(destination)
+        file.save(destination)
+
+    return render_template("complete.html")
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
@@ -35,4 +55,5 @@ def upload_file():
 		f.save(secure_filename(f.filename))
 		return 'file uploaded successfully'
 	#return render_template('index.html',filename=f)
+'''
 	
