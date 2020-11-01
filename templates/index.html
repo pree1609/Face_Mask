@@ -68,8 +68,10 @@
       padding-top: 5%;
     }
     #features{
-      background-color: #0cbaba;
-background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+      /*-color: #0cbaba;
+background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);*/
+background: rgb(92,168,213);
+background: linear-gradient(0deg, rgba(92,168,213,1) 0%, rgba(16,33,167,0.7740138291644783) 100%);
 
       /*background: rgb(65,65,65);
       background: linear-gradient(180deg, rgba(65,65,65,1) 0%, rgba(36,11,54,1) 100%);*/
@@ -205,6 +207,7 @@ background-image: linear-gradient(225deg, #ffffff 0%, #784BA0 19%, #ffffff 39%, 
 background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
   right: 0px;
   top:25px;
+  z-index: -1;
 }
 
 #wave:after {
@@ -219,6 +222,7 @@ background-color: #8BC6EC;
 background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
   left: 0px;
   top: 30px;
+  z-index: -1;
 }
 
 
@@ -242,7 +246,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
 
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark colornav fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark colornav fixed-top menu">
         <a class="navbar-brand" href="">Mask It</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -272,12 +276,12 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
 
     <section id="title">
       <div class="container">
-         <img class="title-image" id="theImage" src="sysl_fm/static/Natural Makeup.png" alt="inno1">
+         <img class="title-image" id="theImage" src="static/Natural Makeup.png" alt="inno1">
          <div class="content1">
         <h1 style="z-index:999; position:relative;">MASK IT</h1>
         <h3 class="ml2">Are you safe? Mask it!</h3>
-        <button class="butt" type="button" style="margin-left:11rem;" name="button"><strong>NEWS UPDATES</strong></button>
-        <button class="butt" type="button" style="margin-left:2rem;" name="button"><strong>COVID19 TRACKER</strong></button>
+        <button class="butt" type="button" style="margin-left:11rem;" name="button"><strong><a style="color:#bbbfca;" href="https://www.mohfw.gov.in/">NEWS UPDATES</a></strong></button>
+        <button class="butt" type="button" style="margin-left:2rem;" name="button"><strong><a style="color:#bbbfca;" href="https://www.covid19india.org/">COVID19 TRACKER</a></strong></button>
       </div>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
@@ -330,7 +334,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
           <li class="list">
             <i class="fas fd fa-upload fa-3x"></i>
             <a type="button" class="bn btn btn-secondary" href="uploader">Upload Image</a>
-            <form action = "http://localhost:5000/uploader" method = "POST" 
+            <form action = "http://localhost:5000/uploader" method = "POST"
          enctype = "multipart/form-data">
          <input type = "file" name = "filename" />
          <input type = "submit"/>
@@ -400,7 +404,17 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
 
   </div>
   <script >
+  $(document).ready(function(){
+    $(window).scroll(function(){
+        if($(window).scrollTop() > $(window).height()){
+            $(".menu").css({"background-color":"#bbbfca"});
+        }
+        else{
+            $(".menu").css({"background-color":"transparent"});
+        }
 
+    })
+})
   var textWrapper = document.querySelector('.ml2');
   textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
   var s=Date.now();
