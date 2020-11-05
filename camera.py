@@ -1,9 +1,10 @@
 from keras.models import load_model
 import cv2
-import numpy as np 
+import numpy as np
 
 model=load_model('model-017.model')
 face_cascade=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+mouth_cascade=cv2.CascadeClassifier('haarcascade_mcs_mouth.xml')
 labels={0:'Stay Safe!',1:'Wear a mask!'}
 color={0:(0,255,0),1:(0,0,255)}
 
@@ -49,5 +50,3 @@ class VideoCamera2(object):
 			cv2.rectangle(resized_img,(x,y), (x+w,y+h),(0,255,0),2)
 		r,jpeg=cv2.imencode('.jpg',resized_img)
 		return jpeg.tobytes()
-
-
